@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-nav-bar',
+  selector: 'wt-nav-bar',
   template: '',
   styleUrls: ['./nav-bar.component.css']
 })

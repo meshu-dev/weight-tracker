@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-//import { IProduct } from './product';
+import { Reading } from './reading';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-//import { Observable } from 'rxjs';
-//import { catchError, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ReadingRepositoryService {
-	private weightUrl = 'api/weights.json';
+	private url = 'api/readings/readings.json';
 
 	constructor(private http: HttpClient) { }
 
@@ -52,6 +52,25 @@ export class ReadingRepositoryService {
         catchError(this.handleError)
       );
   } */
+
+  getReadings(): Observable<Reading[]> {
+    return this.http.get<Reading[]>(this.url)
+      .pipe(
+        tap(data => console.log('All: ' + JSON.stringify(data))),
+        catchError((error: any) => {
+        // todo: log?
+
+        /*
+        if (error.status == 500) {
+            this.alertService.showError(error.statusText);
+        } else if (error.status == 588) {
+            this.alertService.showAlert(error.statusText);
+        } */
+
+        return Observable.throw(error.statusText);
+    })
+      );
+  }
 
   private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure

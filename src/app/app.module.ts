@@ -8,21 +8,17 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
+import { appRoutes } from './routes';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    //AppRoutingModule,
+    AppRoutingModule,
     CoreModule,
-    SharedModule,
-    RouterModule.forRoot([
-      { path: 'welcome', component: AppComponent },
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-    ])
-    //RouterModule.forRoot(appRoutes)
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

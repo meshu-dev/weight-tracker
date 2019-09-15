@@ -1,31 +1,31 @@
 [
   {
     "readingId": 1,
-    "readingName": 10.4,
+    "value": 10.4,
     "weightUnit": "stone",
     "weighDate": "October 15, 2018"
   },
   {
     "readingId": 2,
-    "readingName": 11.6,
+    "value": 11.6,
     "weightUnit": "stone",
     "weighDate": "October 15, 2018"
   },
   {
     "readingId": 3,
-    "readingName": 9.4,
+    "value": 9.4,
     "weightUnit": "stone",
     "weighDate": "October 15, 2018"
   },
   {
     "readingId": 4,
-    "readingName": 10.1,
+    "value": 10.1,
     "weightUnit": "stone",
     "weighDate": "October 15, 2018"
   },
   {
     "readingId": 5,
-    "readingName": 15.12,
+    "value": 15.12,
     "weightUnit": "stone",
     "weighDate": "October 15, 2018"
   }

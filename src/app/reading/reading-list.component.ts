@@ -5,6 +5,7 @@ import { ReadingRepositoryService } from './reading-repository.service';
 
 @Component({
   /* selector: 'pm-products', */
+  selector: 'app-root',
   templateUrl: './reading-list.component.html',
   styleUrls: ['./reading-list.component.css']
 })

@@ -4,12 +4,21 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
 import { ReadingRepositoryService } from './reading-repository.service';
-import { ReadingComponent } from './reading.component';
+import { ReadingListComponent } from './reading-list.component';
+
+import { ReadingRoutingModule } from './reading-routing.module';
 
 @NgModule({
-  imports: [ RouterModule, SharedModule ],
-  exports: [ ],
-  declarations: [ ReadingComponent ],
-  providers: [ ReadingRepositoryService ]
+  imports: [
+  	ReadingRoutingModule,
+  	SharedModule
+  ],
+  exports: [],
+  declarations: [
+  	ReadingListComponent
+  ],
+  providers: [
+  	ReadingRepositoryService
+  ]
 })
 export class ReadingModule { };

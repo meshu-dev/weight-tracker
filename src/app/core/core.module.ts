@@ -6,9 +6,17 @@ import { UserRepositoryService } from './user-repository.service';
 import { NavBarComponent } from './nav-bar.component';
 
 @NgModule({
-  imports: [ CommonModule ],
-  exports: [ NavBarComponent ],
-  declarations: [ NavBarComponent ],
-  providers: [ UserRepositoryService ]
+  imports: [
+  	CommonModule
+  ],
+  exports: [
+  	NavBarComponent
+  ],
+  declarations: [
+  	NavBarComponent
+  ],
+  providers: [
+  	UserRepositoryService
+  ]
 })
 export class CoreModule { };

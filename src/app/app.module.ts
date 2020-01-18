@@ -8,16 +8,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './common/shared.module';
+import { SharedModule } from './shared/shared.module';
 import { WeighinModule } from './weighins/weighin.module';
 
 import { ConfigService } from './services/config.service';
 import { first } from 'rxjs/operators';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CacheInterceptor } from './common/cache.interceptor';
-import { HeaderInterceptor } from './common/header.interceptor';
-import { AuthInterceptor } from './common/auth.interceptor';
+import { CacheInterceptor } from './shared/cache.interceptor';
+import { HeaderInterceptor } from './shared/header.interceptor';
+import { AuthInterceptor } from './shared/auth.interceptor';
 
 function init(configService: ConfigService) {
   return () => {

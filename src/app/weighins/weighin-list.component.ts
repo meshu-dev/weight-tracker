@@ -10,11 +10,17 @@ import { IWeighin } from './weighin';
 
 export class WeighinListComponent  {
   weighIns: IWeighin[] = [];
+  page = 1;
+  pageSize = 3;
 
   constructor(private weighinService: WeighinService) { }
 
   ngOnInit(): void {
-    this.weighinService.get().subscribe({
+    this.getWeighIns(this.page);
+  }
+
+  getWeighIns(page: number): void {
+    this.weighinService.get(page, this.pageSize).subscribe({
       next: weighIns => {
         this.weighIns = weighIns;
       },

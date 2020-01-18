@@ -5,7 +5,7 @@ import { WeighinListComponent } from './weighins/weighin-list.component';
 import { NotFoundComponent } from './shared/not-found.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/weighins', pathMatch: 'full' },
+  { path: '', redirectTo: '/weighins', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
 

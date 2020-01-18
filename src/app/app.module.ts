@@ -2,7 +2,6 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +32,6 @@ function init(configService: ConfigService) {
   ],
   imports: [
     BrowserModule,
-    NgbModule,
     SharedModule,
     AuthModule,
     WeighinModule,

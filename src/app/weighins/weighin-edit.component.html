@@ -1,1 +1,17 @@
-<div>New Form</div>
+<div class="container h-100">
+  <div class="row justify-content-center">
+    <div class="col-sm">
+      <h1>Add Weigh In</h1>
+    	<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="mx-auto">
+      	<div class="form-group row">
+          <div class="col-sm-10">
+            <ngb-datepicker name="date" [(ngModel)]="date"></ngb-datepicker>
+          </div>
+          <div class="col-sm-10">
+
+          </div>
+        </div>
+	    </form>
+    </div>
+  </div>
+</div>

@@ -14,3 +14,8 @@
   </tr>
   </tbody>
 </table>
+<ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="20"
+  (pageChange)="getWeighIns($event)"></ngb-pagination>

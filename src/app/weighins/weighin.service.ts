@@ -16,11 +16,11 @@ export class WeighinService {
     private configService: ConfigService
   ) { }
 
-  get(): Observable<IWeighin[]> {
+  get(offset: number, limit: number): Observable<IWeighin[]> {
     let config = this.configService.get();
 
     return this.http.get<IWeighin[]>(
-        config.url + '/weighins'
+        config.url + `/weighins?page=${offset}&count=${limit}`
       )
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),

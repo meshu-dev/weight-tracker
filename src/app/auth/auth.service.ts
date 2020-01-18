@@ -4,17 +4,21 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { ConfigService } from './../services/config.service';
+
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
-  constructor(private http: HttpClient) { }
-
-  url = 'https://localhost:5001';
+  constructor(
+    private http: HttpClient,
+    private configService: ConfigService
+  ) { }
 
   login(user: User): Observable<boolean> {
-    return this.http.post<{token: string}>(this.url + '/auth/login', user)
+    let config = this.configService.get();
+
+    return this.http.post<{token: string}>(config.url + '/auth/login', user)
       .pipe(
         map(result => {
           if (result.token) {

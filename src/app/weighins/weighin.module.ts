@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbPaginationModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { WeighinListComponent } from './weighin-list.component';
 import { WeighinEditComponent } from './weighin-edit.component';
+import { AuthGuard } from './../shared/auth.guard';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,12 @@ import { WeighinEditComponent } from './weighin-edit.component';
   	BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgbPaginationModule,
+    NgbDatepickerModule,
     RouterModule.forChild([
       {
         path: 'weighins',
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',

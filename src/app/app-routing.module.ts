@@ -6,7 +6,6 @@ import { NotFoundComponent } from './shared/not-found.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/weighins', pathMatch: 'full' },
-	{ path: '404', component: WeighinListComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

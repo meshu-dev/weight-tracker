@@ -1,6 +1,6 @@
 <div class='bg-dark'>
   <nav class='navbar navbar-expand container justify-content-end'>
-  <a class="navbar-brand" href="/">
+  <a class="navbar-brand" [routerLink]="['/']">
     <img
       width="30"
       alt="Angular Logo"
@@ -13,7 +13,7 @@
       <li>
         <a
           class='nav-link text-light'
-          [routerLink]="['/add']">Add WeighIn</a>
+          [routerLink]="['/weighins/add']">Add WeighIn</a>
       </li>
       <li>
         <a

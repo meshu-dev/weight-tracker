@@ -5,10 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { WeighinListComponent } from './weighin-list.component';
+import { WeighinEditComponent } from './weighin-edit.component';
 
 @NgModule({
   declarations: [
-    WeighinListComponent
+    WeighinListComponent,
+    WeighinEditComponent
   ],
   imports: [
   	BrowserModule,
@@ -21,6 +23,14 @@ import { WeighinListComponent } from './weighin-list.component';
           {
             path: '',
             component: WeighinListComponent
+          },
+          {
+            path: 'add',
+            component: WeighinEditComponent
+          },
+          {
+            path: ':id/edit',
+            component: WeighinEditComponent
           }
         ]
       }

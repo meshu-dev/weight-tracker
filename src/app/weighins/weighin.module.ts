@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbPaginationModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { WeighinListComponent } from './weighin-list.component';
 import { WeighinEditComponent } from './weighin-edit.component';
@@ -20,6 +21,7 @@ import { AuthGuard } from './../shared/auth.guard';
     HttpClientModule,
     NgbPaginationModule,
     NgbDatepickerModule,
+    FontAwesomeModule,
     RouterModule.forChild([
       {
         path: 'weighins',

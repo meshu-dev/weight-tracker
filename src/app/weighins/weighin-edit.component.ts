@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { WeighinService } from './weighin.service';
 import { IWeighin } from './weighin';
 import { NgbDateStruct, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   templateUrl: './weighin-edit.component.html',
@@ -13,6 +14,7 @@ import { NgbDateStruct, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap'
 export class WeighinEditComponent  {
   weighIns: IWeighin[] = [];
   date: NgbDateStruct;
+  calendarIcon = faCalendar;
 
   constructor(
   	private calendar: NgbCalendar,

@@ -2,13 +2,32 @@
   <div class="row justify-content-center">
     <div class="col-sm">
       <h1>Add Weigh In</h1>
-    	<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="mx-auto">
+    	<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <!--
       	<div class="form-group row">
-          <div class="col-sm-10">
+          <div class="col-sm-4">
             <ngb-datepicker name="date" [(ngModel)]="date"></ngb-datepicker>
           </div>
-          <div class="col-sm-10">
-
+          <div class="col-sm">
+            <input type="text" />
+          </div>
+        </div> -->
+        <div class="form-group row">
+          <div class="input-group">
+            <input class="form-control"
+                   placeholder="yyyy-mm-dd"
+                   name="dp"
+                   [(ngModel)]="model"
+                   ngbDatepicker #d="ngbDatepicker" />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary calendar button"
+                (click)="d.toggle()"
+                type="button"
+                >
+                  <fa-icon [icon]="calendarIcon"></fa-icon>
+                </button>
+            </div>
           </div>
         </div>
 	    </form>

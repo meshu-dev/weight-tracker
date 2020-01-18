@@ -4,6 +4,4 @@ import { Router } from '@angular/router';
 @Component({
   templateUrl: './not-found.component.html'
 })
-export class NotFoundComponent  {
-
-}
+export class NotFoundComponent { }

@@ -1,30 +1,30 @@
-<div class='bg-dark'>
+<header class='bg-dark'>
   <nav class='navbar navbar-expand container justify-content-end'>
-  <a class="navbar-brand" [routerLink]="['/']">
-    <img
-      width="30"
-      alt="Angular Logo"
-      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-    />
-    <span class="ml-2 text-light">Weight Tracker</span>
-  </a>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class='nav' *ngIf="authService.isLoggedIn()">
-      <li>
-        <a
-          class='nav-link text-light'
-          [routerLink]="['/weighins/add']">Add WeighIn</a>
-      </li>
-      <li>
-        <a
-          class='nav-link text-light'
-          (click)="logout()"
-          [routerLink]="">Logout</a>
-      </li>
-    </ul>
-  </div>
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img
+        width="30"
+        alt="Angular Logo"
+        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+      />
+      <span class="ml-2 text-light">Weight Tracker</span>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class='nav' *ngIf="authService.isLoggedIn()">
+        <li>
+          <a
+            class='nav-link text-light'
+            [routerLink]="['/weighins/add']">Add WeighIn</a>
+        </li>
+        <li>
+          <a
+            class='nav-link text-light'
+            (click)="logout()"
+            [routerLink]="">Logout</a>
+        </li>
+      </ul>
+    </div>
   </nav>
-</div>
+</header>
 <div id='app-content' class='container'>
   <router-outlet></router-outlet>
 </div>

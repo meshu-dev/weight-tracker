@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { NotFoundComponent } from './not-found.component';
 
@@ -6,6 +7,8 @@ import { NotFoundComponent } from './not-found.component';
   declarations: [
     NotFoundComponent
   ],
-  imports: []
+  imports: [
+  	RouterModule
+  ]
 })
 export class SharedModule { }

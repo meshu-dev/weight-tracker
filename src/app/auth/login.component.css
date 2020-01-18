@@ -1,0 +1,8 @@
+form {
+	width: 18rem;
+	padding: 1rem;
+}
+
+.field-error {
+	border: 1px solid red;
+}

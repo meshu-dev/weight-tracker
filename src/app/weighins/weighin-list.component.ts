@@ -12,6 +12,7 @@ export class WeighinListComponent  {
   weighIns: IWeighin[] = [];
   page = 1;
   pageSize = 3;
+  totalCount: number;
 
   constructor(private weighinService: WeighinService) { }
 
@@ -19,6 +20,7 @@ export class WeighinListComponent  {
     this.getWeighIns(this.page);
   }
 
+  /*
   getWeighIns(page: number): void {
     this.weighinService.get(page, this.pageSize).subscribe({
       next: weighIns => {
@@ -26,5 +28,26 @@ export class WeighinListComponent  {
       },
       error: err => console.log('err', err)
     });
+  } */
+
+  getWeighIns(page: number): void {
+    this.weighinService.get(page, this.pageSize)
+      .subscribe({
+        next: response => {
+
+          console.log('RESPONSE!!!', response);
+
+          /*
+          if (response.headers.cache) {
+            this.totalCount = response.headers.cache['X-Total-Count'];
+          } else {
+            this.totalCount = response.headers.get('X-Total-Count');
+          } */
+
+          this.totalCount = response.headers.get('X-Total-Count');
+          this.weighIns = response.body;
+        },
+        error: err => console.log('err', err)
+      });
   }
 }

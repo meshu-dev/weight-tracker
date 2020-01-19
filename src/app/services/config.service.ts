@@ -24,6 +24,6 @@ export class ConfigService {
   }
 
   get(): any {
-      return this.data;
+    return this.data;
   }
 }

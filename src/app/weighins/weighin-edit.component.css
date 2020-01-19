@@ -3,12 +3,5 @@ h1 {
 }
 
 form {
-  width: 400px;
-}
-
-button.calendar, button.calendar:active {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCS…nlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=) !important;
-    background-repeat: no-repeat;
-    background-size: 23px;
-    background-position: center;
+	width: 350px;
 }

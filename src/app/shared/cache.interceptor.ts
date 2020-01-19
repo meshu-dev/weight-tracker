@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -13,13 +13,22 @@ export class CacheInterceptor implements HttpInterceptor {
 		console.log(`CacheInterceptor - ${req.url}`);
 
 		if (req.method === 'GET') {
-			const httpResponse: HttpResponse<any> = this.cacheService.get(req.url);
+			const httpResponse: HttpResponse<any> = this.cacheService.getResponse(req.url);
 
       if (httpResponse) {
         console.log(`Getting CACHED response: ${httpResponse.url}`);
         console.log(httpResponse);
 
-        return of(new HttpResponse({ body: httpResponse.body }));
+        let httpHeaders = this.cacheService.getHeaders(req.url);
+
+        let response = new HttpResponse(
+          {
+            headers: httpHeaders,
+            body: httpResponse.body
+          }
+        );
+
+        return of(response);
       }
 
       return next.handle(req)
@@ -27,12 +36,15 @@ export class CacheInterceptor implements HttpInterceptor {
           tap(event => {
             if (event instanceof HttpResponse) {
               console.log(`Adding item to cache: ${req.url}`);
-              this.cacheService.set(req.url, event);
+              console.log(event);
+
+              this.cacheService.setResponse(req.url, event);
             } 
           })
         )
 		} else {
-      this.cacheService.clearAll();
+      //this.cacheService.clearAll();
+
       return next.handle(req);
     }
 	}

@@ -2,22 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-sm">
       <h1>Add Weigh In</h1>
-    	<form #form="ngForm" (ngSubmit)="onSubmit(form)">
-        <!--
-      	<div class="form-group row">
-          <div class="col-sm-4">
-            <ngb-datepicker name="date" [(ngModel)]="date"></ngb-datepicker>
-          </div>
-          <div class="col-sm">
-            <input type="text" />
-          </div>
-        </div> -->
-        <div class="form-group row">
+    	<form #form="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="alterEgo">Date</label>
           <div class="input-group">
             <input class="form-control"
                    placeholder="yyyy-mm-dd"
-                   name="dp"
-                   [(ngModel)]="model"
+                   name="date"
+                   [(ngModel)]="weighin.date"
                    ngbDatepicker #d="ngbDatepicker" />
             <div class="input-group-append">
               <button
@@ -29,6 +21,23 @@
                 </button>
             </div>
           </div>
+        </div>
+        <div class="form-group">
+          <label for="alterEgo">Weight</label>
+          <input
+            type="text"
+            class="form-control"
+            name="value"
+            [(ngModel)]="weighin.value"
+            #emailField="ngModel"
+            required
+            [class.field-error]="form.submitted && emailField.invalid" />
+          <div [hidden]="!form.submitted || emailField.valid" class="alert alert-danger">
+            Enter an e-mail address
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Add</button>
         </div>
 	    </form>
     </div>

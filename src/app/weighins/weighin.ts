@@ -1,5 +1,5 @@
 export interface IWeighin {
   weighinId: number;
-  date: number;
+  date: any;
   value: string;
 }

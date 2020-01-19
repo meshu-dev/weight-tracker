@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
@@ -16,17 +16,45 @@ export class WeighinService {
     private configService: ConfigService
   ) { }
 
-  get(offset: number, limit: number): Observable<IWeighin[]> {
+  get apiUrl(): string {
     let config = this.configService.get();
+    return config.url;
+  }
 
+  /*
+  get(offset: number, limit: number): Observable<IWeighin[]> {
     return this.http.get<IWeighin[]>(
-        config.url + `/weighins?page=${offset}&count=${limit}`
+        `${this.apiUrl}/weighins?page=${offset}&count=${limit}`
       )
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
+  } */
+
+  get(offset: number, limit: number): Observable<any> {
+    return this.http.get<any>(
+        `${this.apiUrl}/weighins?page=${offset}&count=${limit}`,
+        { observe: 'response', withCredentials: true }
+      );
   }
+
+  save(weighIn: IWeighin): Observable<any> {
+    /*
+    return this.http.post<IWeighin>('${this.apiUrl}/weighins', weighIn)
+      .pipe(
+        map(result => {
+          console.log('Add Result');
+          console.log(result);
+        })
+      ); */
+
+    return this.http.post<any>(
+      `${this.apiUrl}/weighins`,
+      weighIn,
+      { observe: 'response' }
+    );
+  } 
 
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';

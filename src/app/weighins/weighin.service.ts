@@ -54,7 +54,11 @@ export class WeighinService {
       weighIn,
       { observe: 'response' }
     );
-  } 
+  }
+
+  delete(id: number) {
+    return this.http.delete<any>(`${this.apiUrl}/weighins/${id}`);
+  }
 
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';

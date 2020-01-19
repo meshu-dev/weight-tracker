@@ -43,8 +43,6 @@ export class CacheInterceptor implements HttpInterceptor {
           })
         )
 		} else {
-      //this.cacheService.clearAll();
-
       return next.handle(req);
     }
 	}

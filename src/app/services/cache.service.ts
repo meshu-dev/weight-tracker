@@ -16,7 +16,7 @@ export class CacheService {
     if (Object.keys(httpHeaders).length > 0) {
       localStorage.setItem(`${url}-headers`, JSON.stringify(httpHeaders));
     }
-    
+
     localStorage.setItem(url, JSON.stringify(response));
   }
 
@@ -34,8 +34,12 @@ export class CacheService {
     return headers;
   }
 
-  delete(url: string): void {
+  deleteResponse(url: string): void {
     localStorage.removeItem(url);
+  }
+
+  deleteHeader(url: string): void {
+    localStorage.removeItem(`${url}-headers`);
   }
 
   deleteByUrlMatch(url: string): void {
@@ -43,12 +47,12 @@ export class CacheService {
       let index = localStorageKey.indexOf(url);
 
       if (index > -1) {
-        this.delete(localStorageKey);
+        localStorage.removeItem(localStorageKey);
       }
     }
   }
 
-  clearAll(): void {
+  deleteAll(): void {
     localStorage.clear();
   }
 

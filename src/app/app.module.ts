@@ -2,6 +2,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +36,8 @@ function init(configService: ConfigService) {
     SharedModule,
     AuthModule,
     WeighinModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbAlertModule
   ],
   providers: [
     {

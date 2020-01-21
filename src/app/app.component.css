@@ -3,9 +3,15 @@
 }
 
 header {
+	background-color: #C2002E;
 	margin-bottom: 1.5rem;
 }
 
 h1 {
 	margin-bottom: 1rem;
+}
+
+.navbar-brand span {
+	font-size: 1.5rem;
+	font-style: italic;
 }

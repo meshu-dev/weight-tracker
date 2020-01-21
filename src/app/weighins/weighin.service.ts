@@ -32,10 +32,20 @@ export class WeighinService {
       );
   } */
 
-  get(offset: number, limit: number): Observable<any> {
+  getAll(offset: number, limit: number): Observable<any> {
     return this.http.get<any>(
-        `${this.apiUrl}/weighins?page=${offset}&count=${limit}`,
+        `${this.apiUrl}/weighins?page=${offset}&count=${limit}&sort=date_desc`,
         { observe: 'response', withCredentials: true }
+      );
+  }
+
+  get(id: number): Observable<IWeighin> {
+    return this.http.get<IWeighin>(
+        `${this.apiUrl}/weighins/${id}`
+      )
+      .pipe(
+        tap(data => console.log('All: ' + JSON.stringify(data))),
+        catchError(this.handleError)
       );
   }
 

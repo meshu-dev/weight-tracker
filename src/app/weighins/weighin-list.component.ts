@@ -12,8 +12,9 @@ import { CacheService } from './../services/cache.service';
 export class WeighinListComponent  {
   weighIns: IWeighin[] = [];
   totalCount: number;
-  pageSize = 3;
+  pageSize = 10;
   page = 1;
+  alertMsg: string;
 
   constructor(
     private weighinService: WeighinService,
@@ -22,6 +23,7 @@ export class WeighinListComponent  {
 
   ngOnInit(): void {
     this.getWeighIns(this.page);
+    this.alertMsg = 'BANG!';
   }
 
 /*
@@ -38,7 +40,7 @@ get dateSuffix($filter) {
 } */
 
   getWeighIns(page: number): void {
-    this.weighinService.get(page, this.pageSize)
+    this.weighinService.getAll(page, this.pageSize)
       .subscribe({
         next: response => {
           this.totalCount = response.headers.get('X-Total-Count');

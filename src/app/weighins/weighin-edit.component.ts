@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 
 import { WeighinService } from './weighin.service';
 import { IWeighin } from './weighin';
@@ -8,6 +8,9 @@ import { NgbDateStruct, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 import { CacheService } from './../services/cache.service';
+import { AlertMsgService } from './../services/alert-msg.service';
+
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   templateUrl: './weighin-edit.component.html',
@@ -15,7 +18,9 @@ import { CacheService } from './../services/cache.service';
 })
 
 export class WeighinEditComponent  {
-  weighIns: IWeighin[] = [];
+  pageTitle: string;
+  buttonText: string;
+  weighIn: IWeighin;
   date: NgbDateStruct;
   calendarIcon = faCalendar;
 
@@ -28,12 +33,41 @@ export class WeighinEditComponent  {
   constructor(
   	private weighinService: WeighinService,
     private cacheService: CacheService,
+    private alertMsgService: AlertMsgService,
     private router: Router,
+    private route: ActivatedRoute,
     private calendar: NgbCalendar
   ) { }
 
   ngOnInit(): void {
-  	this.weighin.date = this.calendar.getToday();
+    this.route.url.subscribe(url => {
+      const isAdd: boolean = url[0].path === 'add' ? true : false;
+
+      if (isAdd === true) {
+        this.addPage();
+      } else {
+        this.editPage();
+      }
+    });
+  }
+
+  addPage() {
+    this.pageTitle = 'Add Weigh In';
+    this.buttonText = 'Add';
+    this.weighin.date = this.calendar.getToday();
+  }
+
+  editPage() {
+    this.pageTitle = 'Edit Weigh In';
+    this.buttonText = 'Edit';
+
+    const resolvedData: IWeighin = this.route.snapshot.data['resolvedData'];
+    if (resolvedData) {
+      this.weighin = resolvedData['weighIn'];
+
+      console.log('this.weighin');
+      console.log(this.weighin['weighIn']);
+    }
   }
 
   onSubmit() {

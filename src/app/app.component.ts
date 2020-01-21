@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AuthService } from './auth/auth.service';
+import { AlertMsgService } from './services/alert-msg.service';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +11,18 @@ import { AuthService } from './auth/auth.service';
 })
 
 export class AppComponent {
+  private alertMsg: string;
+
   constructor(
     private authService: AuthService,
+    private alertMsgService: AlertMsgService,
     private router: Router
   )
   { }
 
-  /*
   ngOnInit() {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login']);
-    }
-  } */
+    this.alertMsg = this.alertMsgService.getMessage();
+  }
 
   logout() {
     this.authService.logout();

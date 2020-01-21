@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbPaginationModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbDatepickerModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { WeighinListComponent } from './weighin-list.component';
 import { WeighinEditComponent } from './weighin-edit.component';
+import { WeighinResolver } from './weighin-resolver.service';
 import { AuthGuard } from './../shared/auth.guard';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AuthGuard } from './../shared/auth.guard';
     HttpClientModule,
     NgbPaginationModule,
     NgbDatepickerModule,
+    NgbAlertModule,
     FontAwesomeModule,
     RouterModule.forChild([
       {
@@ -37,7 +39,8 @@ import { AuthGuard } from './../shared/auth.guard';
           },
           {
             path: ':id/edit',
-            component: WeighinEditComponent
+            component: WeighinEditComponent,
+            resolve: { resolvedData: WeighinResolver }
           }
         ]
       }

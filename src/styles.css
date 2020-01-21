@@ -4,3 +4,16 @@ html, body, #app-content {
   height: 100%
 }
 
+header, a, a:hover, .page-link, .page-link:hover {
+	color: #C2002E;
+}
+
+.page-item.active .page-link {
+  background-color: #C2002E;
+  border-color: #C2002E;
+}
+
+.btn-primary, .btn {
+    background-color: #C2002E;
+    border-color: #C2002E;
+}

@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import { WeighinService } from './weighin.service';
 import { IWeighin } from './weighin';
 import { NgbDateStruct, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 
 import { CacheService } from './../services/cache.service';
 import { AlertMsgService } from './../services/alert-msg.service';
@@ -22,7 +22,7 @@ export class WeighinEditComponent  {
   buttonText: string;
   weighIn: IWeighin;
   date: NgbDateStruct;
-  calendarIcon = faCalendar;
+  calendarIcon = faCalendarDay;
 
   weighin: IWeighin = {
     weighinId: 0,
@@ -40,21 +40,22 @@ export class WeighinEditComponent  {
   ) { }
 
   ngOnInit(): void {
-    this.route.url.subscribe(url => {
-      const isAdd: boolean = url[0].path === 'add' ? true : false;
+    const segments: UrlSegment[] = this.route.snapshot.url;
+    const isAdd: boolean = segments[0].path === 'add' ? true : false;
 
-      if (isAdd === true) {
-        this.addPage();
-      } else {
-        this.editPage();
-      }
-    });
+    if (isAdd === true) {
+      this.addPage();
+    } else {
+      this.editPage();
+    }
   }
 
   addPage() {
     this.pageTitle = 'Add Weigh In';
     this.buttonText = 'Add';
     this.weighin.date = this.calendar.getToday();
+
+    console.log(this.calendar.getToday());
   }
 
   editPage() {
@@ -62,11 +63,12 @@ export class WeighinEditComponent  {
     this.buttonText = 'Edit';
 
     const resolvedData: IWeighin = this.route.snapshot.data['resolvedData'];
+
     if (resolvedData) {
       this.weighin = resolvedData['weighIn'];
 
       console.log('this.weighin');
-      console.log(this.weighin['weighIn']);
+      console.log(this.weighin);
     }
   }
 

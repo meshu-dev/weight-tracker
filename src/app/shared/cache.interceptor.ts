@@ -10,14 +10,14 @@ export class CacheInterceptor implements HttpInterceptor {
 	constructor(private cacheService: CacheService) { }
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		console.log(`CacheInterceptor - ${req.url}`);
+		//console.log(`CacheInterceptor - ${req.url}`);
 
 		if (req.method === 'GET') {
 			const httpResponse: HttpResponse<any> = this.cacheService.getResponse(req.url);
 
       if (httpResponse) {
-        console.log(`Getting CACHED response: ${httpResponse.url}`);
-        console.log(httpResponse);
+        //console.log(`Getting CACHED response: ${httpResponse.url}`);
+        //console.log(httpResponse);
 
         let httpHeaders = this.cacheService.getHeaders(req.url);
 
@@ -35,8 +35,8 @@ export class CacheInterceptor implements HttpInterceptor {
         .pipe(
           tap(event => {
             if (event instanceof HttpResponse) {
-              console.log(`Adding item to cache: ${req.url}`);
-              console.log(event);
+              //console.log(`Adding item to cache: ${req.url}`);
+              //console.log(event);
 
               this.cacheService.setResponse(req.url, event);
             } 

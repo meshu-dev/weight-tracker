@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
+import { NgbDateStruct, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+
 import { ConfigService } from './../services/config.service';
 import { IWeighin } from './weighin';
 
@@ -44,6 +46,19 @@ export class WeighinService {
         `${this.apiUrl}/weighins/${id}`
       )
       .pipe(
+        map(
+          w => {
+            let date = new Date(w.date);
+
+            w.date = new NgbDate(
+              date.getFullYear(),
+              date.getMonth() + 1,
+              date.getDate()
+            );
+
+            return w;
+          }
+        ),
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );

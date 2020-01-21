@@ -5,3 +5,7 @@ h1 {
 form {
 	width: 350px;
 }
+
+#calendar-btn {
+	color: #FFF;
+}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from './auth/auth.service';
-import { AlertMsgService } from './services/alert-msg.service';
+import { MessageService } from './services/message.service';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +15,13 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
-    private alertMsgService: AlertMsgService,
+    private messageService: MessageService,
     private router: Router
   )
   { }
 
   ngOnInit() {
-    this.alertMsg = this.alertMsgService.getMessage();
+    //this.alertMsg = this.messageService.getMessage();
   }
 
   logout() {

@@ -8,7 +8,7 @@ import { NgbDateStruct, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap'
 import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
 
 import { CacheService } from './../services/cache.service';
-import { AlertMsgService } from './../services/alert-msg.service';
+import { MessageService } from './../services/message.service';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -18,14 +18,16 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 
 export class WeighinEditComponent  {
+  isAdd: boolean;
   pageTitle: string;
   buttonText: string;
   weighIn: IWeighin;
   date: NgbDateStruct;
   calendarIcon = faCalendarDay;
 
+  updatedWeighIn: IWeighin;
   weighin: IWeighin = {
-    weighinId: 0,
+    id: 0,
     date: '',
     value: ''
   };
@@ -33,7 +35,7 @@ export class WeighinEditComponent  {
   constructor(
   	private weighinService: WeighinService,
     private cacheService: CacheService,
-    private alertMsgService: AlertMsgService,
+    private messageService: MessageService,
     private router: Router,
     private route: ActivatedRoute,
     private calendar: NgbCalendar
@@ -41,9 +43,9 @@ export class WeighinEditComponent  {
 
   ngOnInit(): void {
     const segments: UrlSegment[] = this.route.snapshot.url;
-    const isAdd: boolean = segments[0].path === 'add' ? true : false;
+    this.isAdd = segments[0].path === 'add' ? true : false;
 
-    if (isAdd === true) {
+    if (this.isAdd === true) {
       this.addPage();
     } else {
       this.editPage();
@@ -54,8 +56,6 @@ export class WeighinEditComponent  {
     this.pageTitle = 'Add Weigh In';
     this.buttonText = 'Add';
     this.weighin.date = this.calendar.getToday();
-
-    console.log(this.calendar.getToday());
   }
 
   editPage() {
@@ -66,9 +66,6 @@ export class WeighinEditComponent  {
 
     if (resolvedData) {
       this.weighin = resolvedData['weighIn'];
-
-      console.log('this.weighin');
-      console.log(this.weighin);
     }
   }
 
@@ -76,15 +73,45 @@ export class WeighinEditComponent  {
     console.log('in onsubmit!!!');
     console.log(this.weighin);
 
-    this.weighin.date = "2013-01-20T00:00:00Z";
+    this.updateData();
 
-    this.weighinService.save(this.weighin)
+    if (this.isAdd === true) {
+      this.addWeighIn();
+    } else {
+      this.editWeighIn();
+    }
+  }
+
+  updateData() {
+    this.updatedWeighIn = Object.assign({}, this.weighin);
+
+    let date = this.updatedWeighIn.date,
+        timestamp = `${date.year}-${date.month}-${date.day}T00:00:00Z`;
+
+    this.updatedWeighIn.date = timestamp;
+  }
+
+  addWeighIn() {
+    this.weighinService.add(this.updatedWeighIn)
       .subscribe({
         next: response => {
-          console.log('SAVE SUBSCRIBE');
-          console.log(response);
-
           if (response.status === 201) {
+            this.cacheService.deleteByUrlMatch('/weighins');
+            
+            this.router.navigate(['/weighins']);
+          } else {
+            console.log('Issue adding weigh-in');
+          }
+        },
+        error: err => console.log('err', err)
+      });
+  }
+
+  editWeighIn() {
+    this.weighinService.edit(this.updatedWeighIn)
+      .subscribe({
+        next: response => {
+          if (response.status === 200) {
             this.cacheService.deleteByUrlMatch('/weighins');
             
             this.router.navigate(['/weighins']);

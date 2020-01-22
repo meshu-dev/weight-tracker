@@ -23,17 +23,6 @@ export class WeighinService {
     return config.url;
   }
 
-  /*
-  get(offset: number, limit: number): Observable<IWeighin[]> {
-    return this.http.get<IWeighin[]>(
-        `${this.apiUrl}/weighins?page=${offset}&count=${limit}`
-      )
-      .pipe(
-        tap(data => console.log('All: ' + JSON.stringify(data))),
-        catchError(this.handleError)
-      );
-  } */
-
   getAll(offset: number, limit: number): Observable<any> {
     return this.http.get<any>(
         `${this.apiUrl}/weighins?page=${offset}&count=${limit}&sort=date_desc`,
@@ -64,7 +53,7 @@ export class WeighinService {
       );
   }
 
-  save(weighIn: IWeighin): Observable<any> {
+  add(weighIn: IWeighin): Observable<any> {
     /*
     return this.http.post<IWeighin>('${this.apiUrl}/weighins', weighIn)
       .pipe(
@@ -76,6 +65,17 @@ export class WeighinService {
 
     return this.http.post<any>(
       `${this.apiUrl}/weighins`,
+      weighIn,
+      { observe: 'response' }
+    );
+  }
+
+  edit(weighIn: IWeighin): Observable<any> {
+    console.log('E', weighIn);
+    //console.log('E', weighIn.id);
+
+    return this.http.put<any>(
+      `${this.apiUrl}/weighins/${weighIn.id}`,
       weighIn,
       { observe: 'response' }
     );

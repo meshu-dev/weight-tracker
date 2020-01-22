@@ -16,11 +16,16 @@
             (click)="logout()"
             [routerLink]="">Logout</a>
         </li>
+        <li>
+          <a
+            class='nav-link text-light'
+            [routerLink]="['/test']">Test</a>
+        </li>
       </ul>
     </div>
   </nav>
 </header>
 <div id='app-content' class='container'>
-  <ngb-alert *ngIf="alertMsgService.msg" [dismissible]="false">{{ alertMsgService.msg }}</ngb-alert>
+  <notifications></notifications>
   <router-outlet></router-outlet>
 </div>

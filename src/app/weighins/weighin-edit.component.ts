@@ -52,6 +52,17 @@ export class WeighinEditComponent  {
     }
   }
 
+  setFormDate(timestamp: string) {
+    let date = new Date(timestamp);
+
+    date = new NgbDate(
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate()
+    );
+    return date;
+  }
+
   addPage() {
     this.pageTitle = 'Add Weigh In';
     this.buttonText = 'Add';
@@ -65,7 +76,10 @@ export class WeighinEditComponent  {
     const resolvedData: IWeighin = this.route.snapshot.data['resolvedData'];
 
     if (resolvedData) {
-      this.weighin = resolvedData['weighIn'];
+      let weighIn = resolvedData['weighIn'];
+      weighIn.date = this.setFormDate(weighIn.date);
+
+      this.weighin = weighIn;
     }
   }
 
@@ -97,8 +111,9 @@ export class WeighinEditComponent  {
         next: response => {
           if (response.status === 201) {
             this.cacheService.deleteByUrlMatch('/weighins');
-            
             this.router.navigate(['/weighins']);
+
+            this.messageService.sendMessage(`New weigh in has been added`);
           } else {
             console.log('Issue adding weigh-in');
           }
@@ -113,8 +128,9 @@ export class WeighinEditComponent  {
         next: response => {
           if (response.status === 200) {
             this.cacheService.deleteByUrlMatch('/weighins');
-            
             this.router.navigate(['/weighins']);
+
+            this.messageService.sendMessage(`Weigh-In with ID ${this.weighin.id} has been edited`);
           } else {
             console.log('Issue adding weigh-in');
           }

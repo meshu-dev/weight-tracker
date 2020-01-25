@@ -51,7 +51,7 @@ export class WeighinListComponent  {
           this.cacheService.deleteByUrlMatch('/weighins');
           this.getWeighIns(this.page);
 
-          this.messageService.sendMessage(`Weigh-In for ${weighIn.date} has been deleted`);
+          this.messageService.sendMessage(`Weigh-In with ID ${weighIn.id} has been deleted`);
         },
         error: err => console.log('err', err)
       });

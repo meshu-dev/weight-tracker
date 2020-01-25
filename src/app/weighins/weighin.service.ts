@@ -35,34 +35,12 @@ export class WeighinService {
         `${this.apiUrl}/weighins/${id}`
       )
       .pipe(
-        map(
-          w => {
-            let date = new Date(w.date);
-
-            w.date = new NgbDate(
-              date.getFullYear(),
-              date.getMonth() + 1,
-              date.getDate()
-            );
-
-            return w;
-          }
-        ),
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
   add(weighIn: IWeighin): Observable<any> {
-    /*
-    return this.http.post<IWeighin>('${this.apiUrl}/weighins', weighIn)
-      .pipe(
-        map(result => {
-          console.log('Add Result');
-          console.log(result);
-        })
-      ); */
-
     return this.http.post<any>(
       `${this.apiUrl}/weighins`,
       weighIn,
@@ -71,9 +49,6 @@ export class WeighinService {
   }
 
   edit(weighIn: IWeighin): Observable<any> {
-    console.log('E', weighIn);
-    //console.log('E', weighIn.id);
-
     return this.http.put<any>(
       `${this.apiUrl}/weighins/${weighIn.id}`,
       weighIn,

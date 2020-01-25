@@ -20,6 +20,7 @@
   </tbody>
 </table>
 <ngb-pagination
+  *ngIf="totalCount > pageSize"
   [(page)]="page"
   [pageSize]="pageSize"
   [collectionSize]="totalCount"

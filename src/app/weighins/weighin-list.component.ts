@@ -4,6 +4,7 @@ import { WeighinService } from './weighin.service';
 import { IWeighin } from './weighin';
 
 import { CacheService } from './../services/cache.service';
+import { MessageService } from './../services/message.service';
 
 @Component({
   templateUrl: './weighin-list.component.html',
@@ -14,32 +15,18 @@ export class WeighinListComponent  {
   totalCount: number;
   pageSize = 10;
   page = 1;
-  alertMsg: string;
 
   constructor(
     private weighinService: WeighinService,
-    private cacheService: CacheService
+    private cacheService: CacheService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
     this.getWeighIns(this.page);
-    this.alertMsg = 'BANG!';
   }
 
-/*
-get dateSuffix($filter) {
-  var suffixes = ["th", "st", "nd", "rd"];
-  return function(input) {
-    var dtfilter = $filter('date')(input, 'MMMM dd');
-    var day = parseInt(dtfilter.slice(-2));
-    var relevantDigits = (day < 30) ? day % 20 : day % 30;
-    //console.log(day, relevantDigits);
-    var suffix = (relevantDigits <= 3) ? suffixes[relevantDigits] : suffixes[0];
-    return dtfilter+suffix;
-  };
-} */
-
-  getWeighIns(page: number): void {
+  public getWeighIns(page: number): void {
     this.weighinService.getAll(page, this.pageSize)
       .subscribe({
         next: response => {
@@ -55,18 +42,27 @@ get dateSuffix($filter) {
       });
   }
 
-  deleteWeighIn(id: number) {
-    console.log(`Id: ${id}`);
-
+  public deleteWeighIn(id: number) {
     this.weighinService.delete(id)
       .subscribe({
         next: response => {
-          console.log('DELETE Response', response);
+          let weighIn = this.findWeighIn(id);
 
           this.cacheService.deleteByUrlMatch('/weighins');
           this.getWeighIns(this.page);
+
+          this.messageService.sendMessage(`Weigh-In for ${weighIn.date} has been deleted`);
         },
         error: err => console.log('err', err)
       });
+  }
+
+  private findWeighIn(id: number) {
+    for (let weighIn of this.weighIns) {
+      if (weighIn.id === id) {
+        return weighIn;
+      }
+    }
+    return null;
   }
 }

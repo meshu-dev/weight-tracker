@@ -2,25 +2,25 @@
   <div class="row justify-content-center">
     <div class="col-sm">
       <h1>Edit Units</h1>
-      <form #form="ngForm" (ngSubmit)="onSubmit()">
+      <form #form="ngForm" (ngSubmit)="$event.preventDefault()">
         <div class="form-group">
           <label for="alterEgo">Unit</label>
           <div class="input-group">
             <div ngbDropdown class="d-inline-block">
-              <button class="btn btn-outline-primary mr-2" id="dropdownBasic1" ngbDropdownToggle>{{ units[selectedUnitIndex].name }}</button>
+              <button class="btn btn-outline-primary mr-2" id="dropdownBasic1" ngbDropdownToggle>{{ selectedUnit ? selectedUnit.name : '' }}</button>
               <div
                 ngbDropdownMenu
                 aria-labelledby="dropdownBasic1">
                 <button
-                  *ngFor="let unit of units; index as i"
-                  (click)="changeUnit(i)"
+                  *ngFor="let unit of units"
+                  (click)="changeUnit(unit.id)"
                   ngbDropdownItem>{{ unit.name }}</button>
               </div>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
         </div>
       </form>
     </div>

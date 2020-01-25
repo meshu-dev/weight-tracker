@@ -26,9 +26,10 @@ export class UnitService {
       );
   }
 
-  get(id: number): Observable<Unit> {
-    return this.http.get<Unit>(
-        `${this.apiUrl}/units/${id}`
+  updateUserUnit(userId: number, unitId: number): Observable<any> {
+    return this.http.put<Unit>(
+        `${this.apiUrl}/users/${userId}/units/${unitId}`,
+        {}
       )
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),

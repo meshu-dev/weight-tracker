@@ -15,8 +15,6 @@ export class AuthInterceptor implements HttpInterceptor {
     if (isAuthUrl === false && isJsonFile === false) {
       const token = this.authService.getAuthToken();
 
-      //console.log(`AUTH CHECK: ${req.url}`);
-
       req = req.clone({
         setHeaders: {'Authorization': `Bearer ${token}`}
       });

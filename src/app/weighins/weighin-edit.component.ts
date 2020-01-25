@@ -52,15 +52,14 @@ export class WeighinEditComponent  {
     }
   }
 
-  setFormDate(timestamp: string) {
+  getFormDate(timestamp: string): NgbDate {
     let date = new Date(timestamp);
 
-    date = new NgbDate(
+    return new NgbDate(
       date.getFullYear(),
       date.getMonth() + 1,
       date.getDate()
     );
-    return date;
   }
 
   addPage() {
@@ -77,7 +76,7 @@ export class WeighinEditComponent  {
 
     if (resolvedData) {
       let weighIn = resolvedData['weighIn'];
-      weighIn.date = this.setFormDate(weighIn.date);
+      weighIn.date = this.getFormDate(weighIn.date);
 
       this.weighin = weighIn;
     }
@@ -113,7 +112,7 @@ export class WeighinEditComponent  {
             this.cacheService.deleteByUrlMatch('/weighins');
             this.router.navigate(['/weighins']);
 
-            this.messageService.sendMessage(`New weigh in has been added`);
+            this.messageService.sendMessage('New weigh in has been added');
           } else {
             console.log('Issue adding weigh-in');
           }

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { UnitModule } from './units/unit.module';
 import { WeighinModule } from './weighins/weighin.module';
 
 import { ConfigService } from './services/config.service';
@@ -34,6 +35,7 @@ function init(configService: ConfigService) {
     BrowserModule,
     SharedModule,
     AuthModule,
+    UnitModule,
     WeighinModule,
     AppRoutingModule
   ],

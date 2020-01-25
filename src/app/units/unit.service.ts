@@ -1,0 +1,49 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
+
+import { ConfigService } from './../services/config.service';
+import { Unit } from './unit';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UnitService {
+  constructor(
+    private http: HttpClient,
+    private configService: ConfigService
+  ) { }
+
+  get apiUrl(): string {
+    let config = this.configService.get();
+    return config.url;
+  }
+
+  getAll(): Observable<any> {
+    return this.http.get<Unit[]>(
+        `${this.apiUrl}/units`
+      );
+  }
+
+  get(id: number): Observable<Unit> {
+    return this.http.get<Unit>(
+        `${this.apiUrl}/units/${id}`
+      )
+      .pipe(
+        tap(data => console.log('All: ' + JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(err: HttpErrorResponse) {
+    let errorMessage = '';
+
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error occurred: ${err.error.message}`;
+    } else {
+      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+    }
+    return throwError(errorMessage);
+  }
+}

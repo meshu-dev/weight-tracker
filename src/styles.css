@@ -4,7 +4,12 @@ html, body, #app-content {
   height: 100%
 }
 
-header, a, a:hover, .page-link, .page-link:hover {
+header,
+a,
+a:hover,
+.page-link,
+.page-link:hover,
+.dropdown-toggle {
 	color: #C2002E;
 }
 
@@ -14,6 +19,10 @@ header, a, a:hover, .page-link, .page-link:hover {
 }
 
 .btn-primary, .btn {
-    background-color: #C2002E;
-    border-color: #C2002E;
+  background-color: #C2002E;
+  border-color: #C2002E;
+}
+
+.dropdown button {
+  background-color: transparent;
 }

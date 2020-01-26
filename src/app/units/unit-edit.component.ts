@@ -55,6 +55,8 @@ export class UnitEditComponent {
         next: result => {
           if (result.unitId) {
             user.unitId = result.unitId;
+            user.unitShortName = result.unitShortName;
+            
             this.userService.set(user);
 
             this.cacheService.deleteByUrlMatch('/weighins');
@@ -65,7 +67,5 @@ export class UnitEditComponent {
         },
         error: err => console.log('err', err)
       });
-
-    //console.log('this.selectedUnitIndex', this.selectedUnitIndex);
   }
 }

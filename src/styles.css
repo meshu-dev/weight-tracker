@@ -13,16 +13,27 @@ a:hover,
 	color: #C2002E;
 }
 
-.page-item.active .page-link {
-  background-color: #C2002E;
-  border-color: #C2002E;
-}
-
-.btn-primary, .btn {
-  background-color: #C2002E;
-  border-color: #C2002E;
-}
-
-.dropdown button {
+.page-link {
   background-color: transparent;
+}
+
+.page-item.active a.page-link,
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  background-color: #C2002E;
+  border-color: #C2002E;
+}
+
+.btn-outline-primary,
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary:visited,
+.btn-outline-primary:focus {
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #C2002E;
+  color: #C2002E;
 }

@@ -26,6 +26,13 @@ export class UnitService {
       );
   }
 
+  get(id: number): Observable<any> {
+    return this.getAll()
+      .pipe(
+        map((units: Unit[]) => units.find(u => u.id === id))
+      );
+  }
+
   updateUserUnit(userId: number, unitId: number): Observable<any> {
     return this.http.put<Unit>(
         `${this.apiUrl}/users/${userId}/units/${unitId}`,

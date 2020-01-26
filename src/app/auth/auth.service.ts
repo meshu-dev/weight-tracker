@@ -23,11 +23,8 @@ export class AuthService {
     return this.http.post<any>(config.url + '/auth/login', user)
       .pipe(
         map(result => {
-          console.log('result', result);
-
           if (result.token) {
             localStorage.setItem('token',  result.token);
-
             this.userService.set(result);
 
             return true;

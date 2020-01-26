@@ -29,13 +29,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-  	console.log('in onsubmit!!!');
-    console.log(this.user);
-
     this.authService.login(this.user)
-      .pipe(first())
       .subscribe(
-        result => this.router.navigate(['/']),
+        isLoggedIn => {
+          if (isLoggedIn === true) {
+            this.router.navigate(['/']);
+          }
+        },
         err => this.error = 'Could not authenticate'
       );
   }

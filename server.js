@@ -9,5 +9,7 @@ app.get('/*', function (req, res) {
  });
 
 // Start server
+const port = 3007;
+
 app.listen(port);
 console.log('Server started on port ' + port);

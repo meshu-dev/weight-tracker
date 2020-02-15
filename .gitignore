@@ -47,3 +47,4 @@ Thumbs.db
 
 # Weight Tracker
 src/assets/config.json
+.env

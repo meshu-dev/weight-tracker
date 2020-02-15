@@ -2,6 +2,11 @@ const express    = require('express'),
 	  app        = express(),
 	  path       = require('path');
 
+// Load config params to process.env
+require('dotenv').config();
+
+const port = process.env.APP_PORT || 3001;
+
 app.use(express.static(__dirname + '/dist/weight-tracker-ui'));
 
 app.get('/*', function (req, res) {
@@ -9,7 +14,5 @@ app.get('/*', function (req, res) {
  });
 
 // Start server
-const port = 3007;
-
 app.listen(port);
-console.log('Server started on port ' + port);
+console.log(`Server started on port ${port}`);

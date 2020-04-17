@@ -5,6 +5,8 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 import { NgbDateStruct, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
+import { environment } from '../../environments/environment';
+
 import { ConfigService } from './../services/config.service';
 import { IWeighin } from './weighin';
 
@@ -13,15 +15,18 @@ import { IWeighin } from './weighin';
 }) 
 
 export class WeighinService {
+  apiUrl: string = environment.apiUrl;
+
   constructor(
     private http: HttpClient,
     private configService: ConfigService
   ) { }
 
+  /*
   get apiUrl(): string {
     let config = this.configService.get();
     return config.url;
-  }
+  } */
 
   getAll(offset: number, limit: number): Observable<any> {
     return this.http.get<any>(

@@ -4,6 +4,8 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 import { ConfigService } from './../services/config.service';
 import { UserService } from './../services/user.service';
 
@@ -11,6 +13,8 @@ import { UserService } from './../services/user.service';
   providedIn: 'root'
 })
 export class AuthService {
+  apiUrl: string = environment.apiUrl;
+
   constructor(
     private http: HttpClient,
     private configService: ConfigService,
@@ -20,7 +24,7 @@ export class AuthService {
   login(user: User): Observable<boolean> {
     let config = this.configService.get();
 
-    return this.http.post<any>(config.url + '/auth/login', user)
+    return this.http.post<any>(this.apiUrl + '/auth/login', user)
       .pipe(
         map(result => {
           if (result.token) {

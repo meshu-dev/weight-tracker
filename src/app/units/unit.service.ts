@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angul
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
 import { ConfigService } from './../services/config.service';
 import { Unit } from './unit';
 
@@ -10,15 +12,18 @@ import { Unit } from './unit';
   providedIn: 'root'
 })
 export class UnitService {
+  apiUrl: string = environment.apiUrl;
+
   constructor(
     private http: HttpClient,
     private configService: ConfigService
   ) { }
 
+  /*
   get apiUrl(): string {
     let config = this.configService.get();
     return config.url;
-  }
+  } */
 
   getAll(): Observable<any> {
     return this.http.get<Unit[]>(

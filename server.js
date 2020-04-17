@@ -5,7 +5,7 @@ const express    = require('express'),
 // Load config params to process.env
 require('dotenv').config();
 
-const port = process.env.APP_PORT || 3001;
+const port = process.env.APP_PORT || 3000;
 
 app.use(express.static(__dirname + '/dist/weight-tracker-ui'));
 

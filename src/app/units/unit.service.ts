@@ -5,7 +5,6 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 
-import { ConfigService } from './../services/config.service';
 import { Unit } from './unit';
 
 @Injectable({
@@ -15,15 +14,8 @@ export class UnitService {
   apiUrl: string = environment.apiUrl;
 
   constructor(
-    private http: HttpClient,
-    private configService: ConfigService
+    private http: HttpClient
   ) { }
-
-  /*
-  get apiUrl(): string {
-    let config = this.configService.get();
-    return config.url;
-  } */
 
   getAll(): Observable<any> {
     return this.http.get<Unit[]>(

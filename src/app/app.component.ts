@@ -14,7 +14,7 @@ export class AppComponent {
   private alertMsg: string;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private messageService: MessageService,
     private router: Router
   )

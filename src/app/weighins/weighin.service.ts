@@ -7,7 +7,6 @@ import { NgbDateStruct, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap'
 
 import { environment } from '../../environments/environment';
 
-import { ConfigService } from './../services/config.service';
 import { IWeighin } from './weighin';
 
 @Injectable({
@@ -18,15 +17,8 @@ export class WeighinService {
   apiUrl: string = environment.apiUrl;
 
   constructor(
-    private http: HttpClient,
-    private configService: ConfigService
+    private http: HttpClient
   ) { }
-
-  /*
-  get apiUrl(): string {
-    let config = this.configService.get();
-    return config.url;
-  } */
 
   getAll(offset: number, limit: number): Observable<any> {
     return this.http.get<any>(

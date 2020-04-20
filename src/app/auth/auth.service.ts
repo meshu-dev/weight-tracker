@@ -5,8 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-
-import { ConfigService } from './../services/config.service';
 import { UserService } from './../services/user.service';
 
 @Injectable({
@@ -17,13 +15,10 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private configService: ConfigService,
     private userService: UserService
   ) { }
 
   login(user: User): Observable<boolean> {
-    let config = this.configService.get();
-
     return this.http.post<any>(this.apiUrl + '/auth/login', user)
       .pipe(
         map(result => {

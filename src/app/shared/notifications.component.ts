@@ -11,7 +11,7 @@ import { MessageService } from './../services/message.service';
 })
 export class NotificationsComponent implements OnInit, OnDestroy {
   private static messageLimit: number = 3;
-  private messages: any[] = [];
+  public messages: any[] = [];
   private subscription: Subscription;
 
   constructor(

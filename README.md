@@ -2,7 +2,7 @@
 
 An app used to store weigh-ins in units such as kilograms, stone and pounds built with Angular. This app connects to an API to manage weigh-in data.
 
-## Install software (using Mac and brew)
+## Install software
 ### NodeJS
 - Install in ubuntu
 ```

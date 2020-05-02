@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://api.wt.meshu.site'
+  apiUrl: 'https://wt-api.meshu.site'
 };

@@ -28,18 +28,34 @@ export class WeighinListComponent  {
     this.getWeighIns(this.page);
   }
 
+  public getStonePoundsValue(weighIn, unit): String {
+    const values = weighIn.value.split('.')
+    const units = unit.split(' ')
+
+    const stone = `${values[0]} ${units[0]}`
+
+    const poundsValue = `${values[1]}.${values[2] || 0}`
+    const pounds = `${poundsValue} ${units[1]}`
+
+    return `${stone} ${pounds}`
+  }
+
   public getWeighIns(page: number): void {
     this.weighinService.getAll(page, this.pageSize)
       .subscribe({
         next: response => {
+          const userData = this.userService.get()
+
           this.totalCount = response.headers.get('X-Total-Count');
           this.weighIns = response.body.map(
             w => {
               w.date = new Date(w.date);
 
-              let userData = this.userService.get();
-              w.value  = `${w.value} ${userData['unit']}`;
-
+              if (userData['unit'] === 'st lbs') {
+                w.value  = this.getStonePoundsValue(w, userData['unit'])
+              } else {
+                w.value  = `${w.value} ${userData['unit']}`;
+              }
               return w;
             }
           );

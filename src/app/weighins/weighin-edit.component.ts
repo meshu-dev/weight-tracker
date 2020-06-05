@@ -33,15 +33,15 @@ export class WeighinEditComponent  {
   };
 
   constructor(
-  	private weighinService: WeighinService,
-   private cacheService: CacheService,
-   private messageService: MessageService,
-   private router: Router,
-   private route: ActivatedRoute,
-   private calendar: NgbCalendar
+    private weighinService: WeighinService,
+    private cacheService: CacheService,
+    private messageService: MessageService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private calendar: NgbCalendar
   ) { }
 
-  ngOnInit(): void {
+  onInit(): void {
     const segments: UrlSegment[] = this.route.snapshot.url;
     this.isAdd = segments[0].path === 'add' ? true : false;
 
@@ -98,8 +98,8 @@ export class WeighinEditComponent  {
   updateData() {
     this.updatedWeighIn = Object.assign({}, this.weighin);
 
-    const date = this.updatedWeighIn.date,
-        timestamp = `${date.year}-${date.month}-${date.day}T00:00:00Z`;
+    const date = this.updatedWeighIn.date;
+    const timestamp = `${date.year}-${date.month}-${date.day}T00:00:00Z`;
 
     this.updatedWeighIn.date = timestamp;
   }

@@ -24,11 +24,11 @@ export class WeighinListComponent  {
     private userService: UserService
   ) { }
 
-  ngOnInit(): void {
+  onInit(): void {
     this.getWeighIns(this.page);
   }
 
-  public getStonePoundsValue(weighIn, unit): String {
+  public getStonePoundsValue(weighIn, unit): string {
     const values = weighIn.value.split('.');
     const units = unit.split(' ');
 

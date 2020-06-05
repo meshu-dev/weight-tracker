@@ -19,7 +19,7 @@ export class AppComponent {
     private router: Router
   ) { }
 
-  ngOnInit() {
+  onInit() {
     // this.alertMsg = this.messageService.getMessage();
   }
 

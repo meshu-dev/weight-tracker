@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
 
-	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		// console.log(`AddHeaderInterceptor - ${req.url}`);
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        // console.log(`AddHeaderInterceptor - ${req.url}`);
 
-		const jsonReq: HttpRequest<any> = req.clone({
-			setHeaders: {'Content-Type': 'application/json'}
-		});
+        const jsonReq: HttpRequest<any> = req.clone({
+            setHeaders: {'Content-Type': 'application/json'}
+        });
 
-		return next.handle(jsonReq);
-	}
+        return next.handle(jsonReq);
+    }
 }

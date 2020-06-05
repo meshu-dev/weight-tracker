@@ -7,15 +7,15 @@ import { CacheService } from './../services/cache.service';
 
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
-	constructor(private cacheService: CacheService) { }
+  constructor(private cacheService: CacheService) { }
 
-	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		// console.log(`CacheInterceptor - ${req.url}`);
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // console.log(`CacheInterceptor - ${req.url}`);
 
-		if (req.method === 'GET') {
-			const httpResponse: HttpResponse<any> = this.cacheService.getResponse(req.url);
+    if (req.method === 'GET') {
+      const httpResponse: HttpResponse<any> = this.cacheService.getResponse(req.url);
 
-   if (httpResponse) {
+      if (httpResponse) {
         // console.log(`Getting CACHED response: ${httpResponse.url}`);
         // console.log(httpResponse);
 
@@ -31,7 +31,7 @@ export class CacheInterceptor implements HttpInterceptor {
         return of(response);
       }
 
-   return next.handle(req)
+      return next.handle(req)
         .pipe(
           tap(event => {
             if (event instanceof HttpResponse) {
@@ -42,8 +42,8 @@ export class CacheInterceptor implements HttpInterceptor {
             }
           })
         );
-		} else {
+    } else {
       return next.handle(req);
     }
-	}
+  }
 }

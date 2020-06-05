@@ -23,7 +23,7 @@ export class UnitEditComponent {
     private messageService: MessageService
   ) { }
 
-  ngOnInit(): void {
+  onInit(): void {
     this.unitService.getAll()
       .subscribe({
         next: units => {
@@ -38,7 +38,7 @@ export class UnitEditComponent {
 
   private findUnit(unitId: number): Unit {
     for (const unit of this.units) {
-      if (unit.id == unitId) { return unit; }
+      if (unit.id === unitId) { return unit; }
     }
     return null;
   }

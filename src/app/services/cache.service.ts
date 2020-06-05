@@ -29,7 +29,9 @@ export class CacheService {
     let headers = new HttpHeaders();
 
     for (const key in headerValues) {
-      headers = headers.set(key, headerValues[key]);
+      if (headerValues.hasOwnProperty(key)) {
+        headers = headers.set(key, headerValues[key]);
+      }
     }
     return headers;
   }
@@ -44,10 +46,12 @@ export class CacheService {
 
   deleteByUrlMatch(url: string): void {
     for (const localStorageKey in localStorage) {
-      const index = localStorageKey.indexOf(url);
+      if (localStorage.hasOwnProperty(localStorageKey)) {
+        const index = localStorageKey.indexOf(url);
 
-      if (index > -1) {
-        localStorage.removeItem(localStorageKey);
+        if (index > -1) {
+          localStorage.removeItem(localStorageKey);
+        }
       }
     }
   }

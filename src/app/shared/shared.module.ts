@@ -13,12 +13,12 @@ import { NotificationsComponent } from './notifications.component';
     NotificationsComponent
   ],
   imports: [
-  	BrowserModule,
-  	RouterModule,
+    BrowserModule,
+    RouterModule,
     NgbAlertModule
   ],
   exports: [
-  	NotificationsComponent
+    NotificationsComponent
   ]
 })
 export class SharedModule { }

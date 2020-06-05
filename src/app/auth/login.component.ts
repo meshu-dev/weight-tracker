@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   public password: string;
   public error: string;
 
-	user: User = {
+  user: User = {
     email: '',
     password: ''
   };

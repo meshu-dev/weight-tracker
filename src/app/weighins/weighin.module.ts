@@ -17,7 +17,7 @@ import { AuthGuard } from './../shared/auth.guard';
     WeighinEditComponent
   ],
   imports: [
-  	BrowserModule,
+    BrowserModule,
     FormsModule,
     HttpClientModule,
     NgbPaginationModule,

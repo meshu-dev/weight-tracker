@@ -29,7 +29,7 @@ export class UnitEditComponent {
         next: units => {
           this.units = units;
 
-          let user = this.userService.get();
+          const user = this.userService.get();
           this.selectedUnit = this.findUnit(user.unitId);
         },
         error: err => console.log('err', err)
@@ -37,8 +37,8 @@ export class UnitEditComponent {
   }
 
   private findUnit(unitId: number): Unit {
-    for (let unit of this.units) {
-      if (unit.id == unitId) return unit;
+    for (const unit of this.units) {
+      if (unit.id == unitId) { return unit; }
     }
     return null;
   }
@@ -48,7 +48,7 @@ export class UnitEditComponent {
   }
 
   onSubmit() {
-    let user = this.userService.get();
+    const user = this.userService.get();
 
     this.unitService.updateUserUnit(user.userId, this.selectedUnit.id)
       .subscribe({
@@ -56,7 +56,7 @@ export class UnitEditComponent {
           if (result.unitId) {
             user.unitId = result.unitId;
             user.unitShortName = result.unitShortName;
-            
+
             this.userService.set(user);
 
             this.cacheService.deleteByUrlMatch('/weighins');

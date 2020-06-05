@@ -34,11 +34,11 @@ export class WeighinEditComponent  {
 
   constructor(
   	private weighinService: WeighinService,
-    private cacheService: CacheService,
-    private messageService: MessageService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private calendar: NgbCalendar
+   private cacheService: CacheService,
+   private messageService: MessageService,
+   private router: Router,
+   private route: ActivatedRoute,
+   private calendar: NgbCalendar
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ export class WeighinEditComponent  {
   }
 
   getFormDate(timestamp: string): NgbDate {
-    let date = new Date(timestamp);
+    const date = new Date(timestamp);
 
     return new NgbDate(
       date.getFullYear(),
@@ -72,10 +72,10 @@ export class WeighinEditComponent  {
     this.pageTitle = 'Edit Weigh In';
     this.buttonText = 'Edit';
 
-    const resolvedData: IWeighin = this.route.snapshot.data['resolvedData'];
+    const resolvedData: IWeighin = this.route.snapshot.data.resolvedData;
 
     if (resolvedData) {
-      let weighIn = resolvedData['weighIn'];
+      const weighIn = resolvedData.weighIn;
       weighIn.date = this.getFormDate(weighIn.date);
 
       this.weighin = weighIn;
@@ -98,7 +98,7 @@ export class WeighinEditComponent  {
   updateData() {
     this.updatedWeighIn = Object.assign({}, this.weighin);
 
-    let date = this.updatedWeighIn.date,
+    const date = this.updatedWeighIn.date,
         timestamp = `${date.year}-${date.month}-${date.day}T00:00:00Z`;
 
     this.updatedWeighIn.date = timestamp;

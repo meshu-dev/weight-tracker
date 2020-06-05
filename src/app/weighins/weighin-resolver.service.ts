@@ -23,7 +23,7 @@ export class WeighinResolver implements Resolve<WeighInResolved> {
 		}
 		return this.weighinService.get(+id)
 			.pipe(
-				map(weighIn => ({ weighIn: weighIn })),
+				map(weighIn => ({ weighIn })),
 				catchError(error => {
 					const message = `Retrieval error: ${error}`;
 					console.log(message);

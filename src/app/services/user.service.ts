@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   set(data) {
-    let user = {
+    const user = {
       userId: data.userId,
       unitId: data.unitId,
       unit: data.unitShortName

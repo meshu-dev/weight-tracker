@@ -11,7 +11,7 @@ export class CacheService {
   constructor() { }
 
   setResponse(url: string, response: HttpResponse<any>): void {
-    let httpHeaders = this.getHttpHeaders(response);
+    const httpHeaders = this.getHttpHeaders(response);
 
     if (Object.keys(httpHeaders).length > 0) {
       localStorage.setItem(`${url}-headers`, JSON.stringify(httpHeaders));
@@ -25,10 +25,10 @@ export class CacheService {
   }
 
   getHeaders(url: string): any {
-    let headerValues = JSON.parse(localStorage.getItem(`${url}-headers`));
+    const headerValues = JSON.parse(localStorage.getItem(`${url}-headers`));
     let headers = new HttpHeaders();
 
-    for (let key in headerValues) {
+    for (const key in headerValues) {
       headers = headers.set(key, headerValues[key]);
     }
     return headers;
@@ -43,8 +43,8 @@ export class CacheService {
   }
 
   deleteByUrlMatch(url: string): void {
-    for (let localStorageKey in localStorage) {
-      let index = localStorageKey.indexOf(url);
+    for (const localStorageKey in localStorage) {
+      const index = localStorageKey.indexOf(url);
 
       if (index > -1) {
         localStorage.removeItem(localStorageKey);
@@ -57,11 +57,11 @@ export class CacheService {
   }
 
   private getHttpHeaders(response: HttpResponse<any>): object {
-    let httpHeaders = {};
+    const httpHeaders = {};
 
-    for (let header of CacheService.CACHE_HEADERS) {
-      let headerValue = response.headers.get(header);
-      
+    for (const header of CacheService.CACHE_HEADERS) {
+      const headerValue = response.headers.get(header);
+
       if (headerValue) {
         httpHeaders[header] = headerValue;
       }

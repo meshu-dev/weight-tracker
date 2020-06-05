@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser'
+import { BrowserModule } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
 import { MessageService } from './../services/message.service';
@@ -10,7 +10,7 @@ import { MessageService } from './../services/message.service';
   templateUrl: './notifications.component.html'
 })
 export class NotificationsComponent implements OnInit, OnDestroy {
-  private static messageLimit: number = 3;
+  private static messageLimit = 3;
   public messages: any[] = [];
   private subscription: Subscription;
 
@@ -20,7 +20,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.updateMessages()
+    this.updateMessages();
     this.clearOnRouteChange();
   }
 
@@ -44,7 +44,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

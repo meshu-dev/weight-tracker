@@ -17,11 +17,10 @@ export class AppComponent {
     public authService: AuthService,
     private messageService: MessageService,
     private router: Router
-  )
-  { }
+  ) { }
 
   ngOnInit() {
-    //this.alertMsg = this.messageService.getMessage();
+    // this.alertMsg = this.messageService.getMessage();
   }
 
   logout() {

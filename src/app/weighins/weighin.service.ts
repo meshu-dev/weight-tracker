@@ -11,7 +11,7 @@ import { IWeighin } from './weighin';
 
 @Injectable({
   providedIn: 'root'
-}) 
+})
 
 export class WeighinService {
   apiUrl: string = environment.apiUrl;

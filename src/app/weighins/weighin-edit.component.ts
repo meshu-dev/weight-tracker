@@ -75,7 +75,8 @@ export class WeighinEditComponent  {
     const resolvedData: IWeighin = this.route.snapshot.data.resolvedData;
 
     if (resolvedData) {
-      const weighIn = resolvedData.weighIn;
+      //const weighIn = resolvedData.weighIn;
+      const weighIn = resolvedData;
       weighIn.date = this.getFormDate(weighIn.date);
 
       this.weighin = weighIn;

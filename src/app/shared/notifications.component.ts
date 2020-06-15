@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 
 import { MessageService } from './../services/message.service';
 
-// tslint:disable-next-line:component-selector
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html'
